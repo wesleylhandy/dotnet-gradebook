@@ -21,6 +21,15 @@ namespace GradeBook.Tests
             Assert.Equal(90.5, result.High, 1);
             Assert.Equal(77.3, result.Low, 1);
             Assert.Equal(average, result.Average, 1);
+            Assert.Equal('B', result.Letter);
+        }
+
+        [Fact]
+        public void BookRejectsInvalidGradeValue()
+        {
+            var book = new Book("");
+            var result = Assert.Throws<ArgumentException>(() => book.AddGrade(100.5));
+            Assert.Equal("Invalid grade", result.Message);
         }
     }
 }
